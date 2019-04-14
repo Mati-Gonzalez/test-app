@@ -1,9 +1,15 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import MockBackend from './MockBackend';
 
+import { BrowserRouter, Route } from 'react-router-dom';
+import Layout from './components/Layout/Layout';
+import ClientsListPage from './pages/ClientsListPage';
+import AddClientPage from './pages/AddClientPage';
+import AddLocalPage from './pages/AddLocalPage';
+
 class App extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             clients: MockBackend.listClients()
@@ -12,14 +18,13 @@ class App extends Component {
 
     render() {
         return (
-            <div>
-                <div>
-                    <h1>Clients</h1>
-                    <ul>
-                        {this.state.clients.map(client => (<div>{client.name}</div>))}
-                    </ul>
-                </div>
-            </div>
+            <BrowserRouter>
+                <Layout>
+                    <Route path='/clientsList' exact component={ClientsListPage}/>
+                    <Route path='/addClient' exact component={AddClientPage}/>
+                    <Route path='/addLocal' exact component={AddLocalPage}/>
+                </Layout>
+            </BrowserRouter>
         );
     }
 }
