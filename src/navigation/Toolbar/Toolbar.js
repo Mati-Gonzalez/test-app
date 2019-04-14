@@ -9,11 +9,11 @@ const Toolbar = (props) => {
             'position': 'fixed', /*para que est'e siempre arriba,aunque se escrolee*/
             'top': 0,
             'left': 0,
-            'background-color': 'darkred',
+            'backgroundColor': 'darkred',
             'display': 'flex',
-            'justify-content': 'space-between',
-            'align-items': 'center',
-            'box-sizing': 'border-box',
+            'justifyContent': 'space-between',
+            'alignItems': 'center',
+            'boxSizing': 'border-box',
         },
         nav: {
             'height': '100%',

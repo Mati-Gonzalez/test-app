@@ -18,9 +18,9 @@ const NavigationList = () => {
     const styles = {
         container:{
             'display': 'flex',
-            'list-style': 'none',
+            'listStyle': 'none',
             'height': '100%',
-            'margin-top': '0',
+            'marginTop': '0',
         }
     }
 

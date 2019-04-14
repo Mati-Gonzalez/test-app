@@ -1,6 +1,6 @@
 import React from 'react';
 import Radium from 'radium';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const NavigationItem = (props) => {
     const styles = {
@@ -8,14 +8,14 @@ const NavigationItem = (props) => {
             'padding': '0px 20px',
             'height': '100%',
             'display': 'flex',
-            'align-items': 'center',
+            'alignItems': 'center',
             ':hover': {
                 'backgroundColor': 'darkgray',
                 'border-bottom': '4px solid darkred',
-            }
+            },
         },
         text: {
-            'color': "white", 
+            'color': "white",
             'textDecorationLine': 'none',
         }
     }
@@ -23,7 +23,7 @@ const NavigationItem = (props) => {
 
     return (
         <li style={styles.container}>
-            <Link to={props.link} style={styles.text} >{props.title}</Link>
+            <NavLink to={props.link} style={styles.text}>{props.title}</NavLink>
         </li>
     );
 }
