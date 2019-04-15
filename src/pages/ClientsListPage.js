@@ -18,6 +18,7 @@ class ClientsListPage extends Component {
         this.onFilter = this.onFilter.bind(this);
         this.onShowAll = this.onShowAll.bind(this);
         this.onAddFavorite = this.onAddFavorite.bind(this);
+        this.removeVenueFromFavorite = this.removeVenueFromFavorite.bind(this);
     }
 
     componentDidMount() {
@@ -38,6 +39,7 @@ class ClientsListPage extends Component {
         try {
             MockBackend.removeFavoriteVenueFromClient(clientId, venueId);
             alert('Venue removed');
+            this.forceUpdate();
         } catch (error) {
             alert(error.message);
         }
@@ -93,7 +95,7 @@ class ClientsListPage extends Component {
                         </button>
                     </Link>
                 </div>
-                <div style={{width: '25%'}}>
+                <div style={{ width: '25%' }}>
                     <TextInput
                         name='ageFilter'
                         label='Age:'
@@ -101,7 +103,7 @@ class ClientsListPage extends Component {
                         onChange={this.handleChange}
                         placeholder='Type a number...'
                     />
-                    <button onClick={this.onFilter} style={styles.buttonStyle } >Filter</button>
+                    <button onClick={this.onFilter} style={styles.buttonStyle} >Filter</button>
                     <button onClick={this.onShowAll} style={styles.buttonStyle} >Show All</button>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -110,11 +112,11 @@ class ClientsListPage extends Component {
                     </div>
                     <div style={{ flex: 1, margin: '0px 10px', padding: '0px 20px', border: '1px solid black', background: 'lightgray' }}>
                         <h1>ADD FAVORITES</h1>
-                        <TextInput 
-                            name='idClientAddFavorite' 
-                            value={this.state.idClientAddFavorite} 
-                            onChange={this.handleChange} 
-                            label='Insert client id:' 
+                        <TextInput
+                            name='idClientAddFavorite'
+                            value={this.state.idClientAddFavorite}
+                            onChange={this.handleChange}
+                            label='Insert client id:'
                             placeholder='Type clients id...'
                         />
                         {this.state.venues.map(venue => {

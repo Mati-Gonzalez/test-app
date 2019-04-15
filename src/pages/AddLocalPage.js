@@ -18,7 +18,9 @@ class AddLocalPage extends Component {
         })
     }
 
-    addVenue() {
+    addVenue(event) {
+        event.preventDefault();
+        
         const { venueName } = this.state;
 
         const newVenue = {
@@ -34,23 +36,23 @@ class AddLocalPage extends Component {
     }
 
     render() {
-        return (         
-                <div>
-                    <h1>ADD VENUE</h1>
-                    <form onSubmit={this.addVenue}>
-                        <TextInput 
-                            label="VENUE NAME" 
-                            name='venueName' 
-                            value={this.state.venueName} 
-                            onChange={this.handleChange} 
-                            placeholder='Type venues name...'/>
-                        <input
-                            type='submit'
-                            value='Submit'
-                            style={{ background: 'darkred', color: 'white', border: '1px solid black', fontSize: '20px', padding: '5px 20px' }}
-                        />
-                    </form>
-                </div>
+        return (
+            <div>
+                <h1>ADD VENUE</h1>
+                <form onSubmit={this.addVenue}>
+                    <TextInput
+                        label="VENUE NAME"
+                        name='venueName'
+                        value={this.state.venueName}
+                        onChange={this.handleChange}
+                        placeholder='Type venues name...' />
+                    <input
+                        type='submit'
+                        value='Submit'
+                        style={{ background: 'darkred', color: 'white', border: '1px solid black', fontSize: '20px', padding: '5px 20px' }}
+                    />
+                </form>
+            </div>
         );
     }
 }
