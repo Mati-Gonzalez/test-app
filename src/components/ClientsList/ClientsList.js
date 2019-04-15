@@ -7,6 +7,7 @@ const ClientsList = (props) => {
             {props.clients.map(item => {
                 return (
                     <Client
+                        key={item.id}
                         id={item.id}
                         name={item.name ? item.name : '-'}
                         age={item.age ? item.age : '-'}

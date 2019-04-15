@@ -8,11 +8,10 @@ class ClientsListPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loading: true,
             clients: [],
             ageFilter: '',
             venues: MockBackend.listVenues(),
-            idClientAddFavorite: ''
+            idClientAddFavorite: '',
         }
         this.handleChange = this.handleChange.bind(this);
         this.onFilter = this.onFilter.bind(this);
@@ -22,24 +21,12 @@ class ClientsListPage extends Component {
     }
 
     componentDidMount() {
-        const clients = MockBackend.listClients();
-        const clientsWithVenues = this.getFavouriteVenues(clients);
-        this.setState({ loading: false, clients: clientsWithVenues })
-    }
-
-    getFavouriteVenues(clients) {
-        clients.forEach(client => {
-            let favoriteVenues = MockBackend.getClientFavoriteVenues(client.id);
-            client.favoriteVenues = favoriteVenues;
-        })
-        return clients;
+        this.setState({ clients: MockBackend.listClients() })
     }
 
     removeVenueFromFavorite(clientId, venueId) {
         try {
             MockBackend.removeFavoriteVenueFromClient(clientId, venueId);
-            alert('Venue removed');
-            this.forceUpdate();
         } catch (error) {
             alert(error.message);
         }
@@ -66,7 +53,6 @@ class ClientsListPage extends Component {
         try {
             const clientId = parseInt(this.state.idClientAddFavorite);
             MockBackend.addFavoriteVenueToClient(clientId, venueId);
-            alert('Added venue to clients favorites successfully');
         } catch (error) {
             alert(error.message);
         }
@@ -78,9 +64,6 @@ class ClientsListPage extends Component {
                 background: 'darkred', color: 'white', border: '1px solid black', fontSize: '20px', padding: '5px 20px',
                 margin: '0px 10px 10px 0px'
             }
-        }
-        if (this.state.loading) {
-            return <div style={{ marginTop: '100px' }}>Loading...</div>
         }
 
         return (
@@ -121,7 +104,7 @@ class ClientsListPage extends Component {
                         />
                         {this.state.venues.map(venue => {
                             return (
-                                <div>
+                                <div key={venue.id}>
                                     <span
                                         style={{ color: 'darkred', paddingRight: '10px' }}
                                         onClick={this.onAddFavorite.bind(this, venue.id)}
